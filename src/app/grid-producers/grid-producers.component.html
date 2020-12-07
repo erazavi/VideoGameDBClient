@@ -1,0 +1,17 @@
+<a href="#" id="new-button">New</a>
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Country</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let producerInfo of publisherData">
+    <td>{{ producerInfo.id}}</td>
+    <td>{{ producerInfo.name}}</td>
+    <td>{{ producerInfo.country}}</td>
+  </tr>
+  </tbody>
+</table>
