@@ -15,7 +15,7 @@ export class GridProducersComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.http.get('https://localhost:5001/api/publishers').subscribe((data: any) => this.publisherData = data);
+    this.http.get('https://vgdbnetcoreserver.azurewebsites.net/api/publishers').subscribe((data: any) => this.publisherData = data);
   }
 
 }

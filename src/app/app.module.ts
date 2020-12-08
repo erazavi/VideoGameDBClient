@@ -31,7 +31,7 @@ import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
     AuthModule.forRoot({
       ...env.auth,
       httpInterceptor: {
-        allowedList: ['https://localhost:5001/*']
+        allowedList: ['https://localhost:5001/*', 'https://vgdbnetcoreserver.azurewebsites.net/*']
       }
     }),
   ],
