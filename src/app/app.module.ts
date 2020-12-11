@@ -15,6 +15,8 @@ import {AuthHttpInterceptor, AuthModule} from '@auth0/auth0-angular';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { GridPublishersWithGamesComponent } from './grid-publishers-with-games/grid-publishers-with-games.component';
 import { VideogameFormComponent } from './videogame-form/videogame-form.component';
+import { GridVideogamesComponent } from './grid-videogames/grid-videogames.component';
+import { PublishersFormComponent } from './publishers-form/publishers-form.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { VideogameFormComponent } from './videogame-form/videogame-form.componen
     AuthNavComponent,
     GridPublishersWithGamesComponent,
     VideogameFormComponent,
+    GridVideogamesComponent,
+    PublishersFormComponent
   ],
   imports: [
     BrowserModule,

@@ -1,15 +1,19 @@
 <div>
   <h4>
+    <a routerLink="">
+      Home
+    </a>
+    <span class="tab"></span>
   <a routerLink="publishers">
       Publishers
   </a>
     <span class="tab"></span>
-    <a routerLink="publishersList">
+    <a routerLink="videogames">
     Games
   </a>
+    <span class="tab"></span>
+    <app-authentication-button></app-authentication-button>
   </h4>
 </div>
-
-<app-authentication-button></app-authentication-button>
 
 <router-outlet></router-outlet>

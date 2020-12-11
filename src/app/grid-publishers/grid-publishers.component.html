@@ -1,4 +1,5 @@
-<a href="#" id="new-button">New</a>
+<h2>Publishers</h2>
+<a [routerLink]="['/publisherForm']">New Entry</a>
 <table>
   <thead>
   <tr>
@@ -12,6 +13,7 @@
     <td>{{ publisherInfo.publisherId}}</td>
     <td>{{ publisherInfo.name}}</td>
     <td>{{ publisherInfo.country}}</td>
+    <td><a [routerLink]="['/publisherForm', publisherInfo.publisherId]">Edit Entry</a></td>
   </tr>
   </tbody>
 </table>

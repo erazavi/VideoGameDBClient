@@ -1,0 +1,21 @@
+<h2>Games</h2>
+<a [routerLink]="['/videogameForm']">New Entry</a>
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Publisher Id</th>
+    <th>Release Date</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let gameInfo of gameData">
+    <td>{{ gameInfo.videoGameId}}</td>
+    <td>{{ gameInfo.name}}</td>
+    <td>{{ gameInfo.publisherId}}</td>
+    <td>{{ gameInfo.releaseDate}}</td>
+    <td><a [routerLink]="['/videogameForm', gameInfo.videoGameId]">Edit Entry</a></td>
+  </tr>
+  </tbody>
+</table>

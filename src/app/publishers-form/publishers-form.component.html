@@ -1,0 +1,27 @@
+<div class="container">
+  <div *ngIf ="isUpdate">
+    <h4> Edit Publisher Id: {{publisherId}}</h4>
+  </div>
+  <div *ngIf="!isUpdate">
+    <h4> Create Entry</h4>
+  </div>
+  <div class="row custom-wrapper">
+    <div class="col-md-12">
+      <!-- Form starts -->
+      <form [formGroup]="publisherForm" (ngSubmit)="onSubmit()">
+        <div class="group-gap">
+          <div class=""d-block my-3>
+            Publisher Name
+            <input type="text" (change)="changePublisher($event)" formControlName="publisher">
+          </div>
+          </div>
+          <div class=""d-block my-3>
+            Country
+            <input type="text" (change)="changeCountry($event)" formControlName="country">
+          </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-danger btn-lg btn-block">Submit</button>
+      </form><!-- Form ends -->
+    </div>
+  </div>
+</div>

@@ -15,7 +15,8 @@ export class GridPublishersWithGamesComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.http.get('https://vgdbnetcoreserver.azurewebsites.net/api/PublisherWithVideoGames').subscribe((data: any) => this.publisherData = data);
+    this.http.get('https://vgdbnetcoreserver.azurewebsites.net/api/PublisherWithVideoGames')
+      .subscribe((data: any) => this.publisherData = data);
   }
 
   // tslint:disable-next-line:typedef

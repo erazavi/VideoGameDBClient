@@ -1,7 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
+import {stringify} from 'querystring';
 
 @Component({
   selector: 'app-videogame-form',
@@ -10,16 +12,15 @@ import {catchError} from 'rxjs/operators';
 })
 export class VideogameFormComponent implements OnInit {
 
-  constructor(private http: HttpClient, public fb: FormBuilder) {
+  constructor(private http: HttpClient, public fb: FormBuilder, private route: ActivatedRoute) {
     this.publisherData = [];
-    this.publisherNames = [];
   }
   isSubmitted = false;
   publisherData: Array<any>;
-  publisherNames: Array<string>;
-
-  @Input() isUpdate = false;
-  @Input() gameId = '';
+  publisherId;
+  data;
+  gameId = '';
+  isUpdate = false;
 
   videoGameForm = this.fb.group({
     gameName: ['', [Validators.required]],
@@ -33,6 +34,8 @@ export class VideogameFormComponent implements OnInit {
     this.publisher.setValue(e.currentTarget.value, {
         onlySelf: true
     });
+    console.log(JSON.stringify(e.target.value));
+    this.publisherId = parseInt((e.target.value).split(':')[1]);
   }
 
   // tslint:disable-next-line:typedef
@@ -67,9 +70,6 @@ export class VideogameFormComponent implements OnInit {
   }
 
   // tslint:disable-next-line:typedef
-  get publisherId(){
-    return (JSON.stringify(this.publisher));
-  }
 
   onSubmit(): boolean {
     console.log(this.videoGameForm);
@@ -84,19 +84,21 @@ export class VideogameFormComponent implements OnInit {
         this.releaseDate.setValue(null);
       }
 
-      let jsonRequest = {
-        name: this.gameName.value,
-        publisherId: parseInt(this.publisherId),
-        releaseDate: this.releaseDate.value
-      };
-
-      console.log(jsonRequest);
-
       if (this.isUpdate){
+        const jsonRequest = {
+          videoGameId: parseInt(this.gameId),
+          name: this.gameName.value,
+          publisherId: parseInt(this.publisherId),
+          releaseDate: this.releaseDate.value
+        };
         this.http.put('https://vgdbnetcoreserver.azurewebsites.net/api/videoGames/' + this.gameId,
           jsonRequest).subscribe();
       } else {
-        console.log('we posted');
+        const jsonRequest = {
+          name: this.gameName.value,
+          publisherId: parseInt(this.publisherId),
+          releaseDate: this.releaseDate.value
+        };
         this.http.post('https://vgdbnetcoreserver.azurewebsites.net/api/videoGames',
           jsonRequest).subscribe();
       }
@@ -108,11 +110,17 @@ export class VideogameFormComponent implements OnInit {
   ngOnInit() {
     this.http.get('https://vgdbnetcoreserver.azurewebsites.net/api/publishers').subscribe((data: any) => {
       this.publisherData = data;
-      this.publisherData.forEach(p => {
-        this.publisherNames.push(p.name);
-      });
-      console.log(this.publisherNames);
     });
+    this.data = this.route.params.subscribe(params => { this.gameId = params['id']; });
+    console.log(this.gameId);
+    if (this.gameId !== undefined){
+      this.isUpdate = true;
+    }
+  }
+
+  // tslint:disable-next-line:typedef use-lifecycle-interface
+  ngOnDestroy(){
+    this.data.unsubscribe();
   }
 }
 
