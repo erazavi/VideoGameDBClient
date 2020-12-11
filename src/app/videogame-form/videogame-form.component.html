@@ -1,0 +1,34 @@
+<div class="container">
+  <div class="row custom-wrapper">
+    <div class="col-md-12">
+      <!-- Form starts -->
+      <form [formGroup]="videoGameForm" (ngSubmit)="onSubmit()">
+        <div class="group-gap">
+          <div class=""d-block my-3>
+            Game Title
+            <input type="text" (change)="changeGameName($event)" formControlName="gameName">
+          </div>
+          <div class="d-block my-3">
+            <div class="mb-3">
+              Publisher
+              <select class="custom-select" (change)="changePublisher($event)" formControlName="publisher">
+                <option value="">Choose your publisher</option>
+                <option *ngFor="let publisher of publisherData" [ngValue]=publisher.publisherId>{{publisher.name}}</option>
+              </select>
+              <!-- error block -->
+              <div class="invalid-feedback" *ngIf="isSubmitted && publisher.errors?.required">
+                <sup>*</sup>Please select the game's Publisher
+              </div>
+            </div>
+          </div>
+          <div class=""d-block my-3>
+            Release Date
+            <input type="date" (change)="changeReleaseDate($event)" formControlName="releaseDate">
+          </div>
+        </div>
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-danger btn-lg btn-block">Submit</button>
+      </form><!-- Form ends -->
+    </div>
+  </div>
+</div>

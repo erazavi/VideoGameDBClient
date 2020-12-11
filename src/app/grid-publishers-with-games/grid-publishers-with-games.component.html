@@ -1,0 +1,8 @@
+<table *ngFor="let publisher of publisherData">
+  <tr>
+    <td><h4>{{publisher.name}}</h4></td>
+  </tr>
+  <tr *ngFor="let game of publisher.videoGames">
+    <td></td> <td>{{game}}</td>
+  </tr>
+</table>
