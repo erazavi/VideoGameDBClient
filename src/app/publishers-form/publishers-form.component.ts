@@ -11,7 +11,7 @@ import {ActivatedRoute} from '@angular/router';
 export class PublishersFormComponent implements OnInit {
   private publisherId: any;
   private data: any;
-  private isUpdate = false;
+  isUpdate = false;
 
   constructor(private http: HttpClient, public fb: FormBuilder, private route: ActivatedRoute) {
   }
