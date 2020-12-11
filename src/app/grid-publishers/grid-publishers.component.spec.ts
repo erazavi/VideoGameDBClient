@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GridProducersComponent } from './grid-producers.component';
+import { GridProducersComponent } from './grid-publishers.component';
 
 describe('GridProducersComponent', () => {
   let component: GridProducersComponent;
